@@ -32,6 +32,7 @@ module.exports = {
 		'@nuxtjs/pwa'
   	],
   	axios: {
+		baseURL: process.env.BASE_URL || 'http://localhost:3000'
   	},
 	env: {
 		appName: 'Личный сайт фронт енд разработчика'
