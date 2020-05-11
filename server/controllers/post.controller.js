@@ -8,6 +8,7 @@ module.exports.create = async (req,res) => {
     const post = new Post({
         title: req.body.title,
         text: req.body.text,
+		category: JSON.parse(req.body.category),
 		tags: JSON.parse(req.body.tags),
 		date: req.body.date,
 		teaser: req.body.teaser,
@@ -47,6 +48,9 @@ module.exports.update = async (req,res) => {
 		text: req.body.text,
 		date: req.body.date
     }
+    if (req.body.category) {
+    	$set.category = JSON.parse(req.body.category)
+	}
     if (req.body.tags) {
     	$set.tags = JSON.parse(req.body.tags)
 	}
@@ -117,6 +121,15 @@ module.exports.getTags = async (req,res) => {
 		})
 		const tags = [...new Set(newTags)]
 		res.json(tags)
+	} catch(e) {
+		res.status(500).json(e)
+	}
+}
+
+module.exports.getPopular = async (req,res) => {
+	try {
+		const popular = await Post.find().sort({views:-1}).limit(5)
+		res.json(popular)
 	} catch(e) {
 		res.status(500).json(e)
 	}

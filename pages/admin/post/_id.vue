@@ -16,12 +16,27 @@
 		<div class="admin-content">
 			<el-form @submit.native.prevent="onSubmit" :model="controls" :rules="rules" ref="form" class="demo-ruleForm">
 				<el-row :gutter="10">
-					<el-col :span="12">
+					<el-col :span="9">
 						<el-form-item label="Введите название поста" prop="title">
 							<el-input v-model="controls.title" />
 						</el-form-item>
 					</el-col>
-					<el-col :span="6">
+					<el-col :span="5">
+						<el-form-item label="Категория" prop="category">
+							<el-select
+								style="width: 100%;"
+								v-model="controls.category"
+								multiple
+								allow-create
+								filterable
+								empty
+								automatic-dropdown
+								:change="categoryChanged = true"
+								placeholder="Категория">
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="5">
 						<el-form-item label="Теги" prop="tags">
 							<el-select
 								style="width: 100%;"
@@ -36,7 +51,7 @@
 							</el-select>
 						</el-form-item>
 					</el-col>
-					<el-col :span="6">
+					<el-col :span="5">
 						<el-form-item label="Дата" prop="date">
 							<el-date-picker
 								style="width: 100%;"
@@ -120,9 +135,11 @@
 				image: [],
 				imageChanged: false,
 				tagsChanged: false,
+				categoryChanged: false,
 				controls: {
 					title: '',
 					text: '',
+					category: [],
 					tags: [],
 					date: '',
 					teaser: ''
@@ -145,6 +162,7 @@
 		mounted() {
 			this.controls.title = this.post.title
 			this.controls.text = this.post.text
+			this.controls.category = this.post.category
 			this.controls.tags  = this.post.tags
 			this.controls.date  = this.post.date
 			this.controls.teaser = this.post.teaser
@@ -177,6 +195,9 @@
 								title: this.controls.title,
 								text: this.controls.text,
 								date: this.controls.date
+							}
+							if (this.categoryChanged) {
+								formData.category = this.controls.category
 							}
 							if (this.tagsChanged) {
 								formData.tags = this.controls.tags

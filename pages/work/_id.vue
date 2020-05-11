@@ -8,7 +8,7 @@
 						<div class="page-title-bottom">
 							<ul class="breadcrumbs">
 								<li class="breadcrumbs-item"><nuxt-link to="/" class="breadcrumbs-link">Главная</nuxt-link></li>
-								<li class="breadcrumbs-item"><nuxt-link to="/portfolio" class="breadcrumbs-link">Портфолио</nuxt-link></li>
+								<li class="breadcrumbs-item"><nuxt-link to="/work" class="breadcrumbs-link">Портфолио</nuxt-link></li>
 								<li><span class="breadcrumbs-link">Детали работы</span></li>
 							</ul>
 						</div>
@@ -17,6 +17,11 @@
 			</div>
 		</div>
 		<div class="container">
+			<CoolLightBox
+				:items="imageArr"
+				:index="index"
+				@close="index = null">
+			</CoolLightBox>
 			<div class="work__top">
 				<span class="style-x">Front end development</span>
 				<h1>{{work.name}}</h1>
@@ -24,7 +29,7 @@
 			<el-row :gutter="50" class="mb2">
 				<el-col :span="12">
 					<div class="work__image">
-						<img :src="work.image[0].url" :alt="work.name">
+						<img :src="work.image[0].url" :alt="work.name" @click="index = 0">
 					</div>
 				</el-col>
 				<el-col :span="12">
@@ -37,7 +42,7 @@
 			<el-row :gutter="50" class="mb2">
 				<el-col :span="12">
 					<div class="work__info">
-						<h3 class="work__title">Подробности</h3>
+						<h3 class="work__title" @click="openPrev">Подробности</h3>
 						<div class="work__meta" v-if="work.date">
 							<span class="work__meta-title">Дата</span>
 							<span class="work__meta-value">{{new Date(work.date) | dateFormat('MMMM YYYY')}}</span>
@@ -64,32 +69,32 @@
 						</social-sharing>
 					</div>
 				</el-col>
-				<el-col :span="12">
+				<el-col :span="12" v-if="work.image[1]">
 					<div class="work__image">
-						<img :src="work.image[1].url" :alt="work.name">
+						<img :src="work.image[1].url" :alt="work.name" @click="index = 1">
 					</div>
 				</el-col>
 			</el-row>
-			<el-row :gutter="50" class="mb2">
-				<el-col :span="12">
+			<el-row :gutter="50" class="mb2" v-if="work.image[2] || work.image[3]">
+				<el-col :span="12" v-if="work.image[2]">
 					<div class="work__image">
-						<img :src="work.image[2].url" :alt="work.name">
+						<img :src="work.image[2].url" :alt="work.name" @click="index = 2">
 					</div>
 				</el-col>
-				<el-col :span="12">
+				<el-col :span="12" v-if="work.image[3]">
 					<div class="work__image">
-						<img :src="work.image[3].url" :alt="work.name">
+						<img :src="work.image[3].url" :alt="work.name" @click="index = 3">
 					</div>
 				</el-col>
 			</el-row>
 			<section class="work__neighbor">
-				<a href="/" class="work__neighbor-link" @click.prevent="openPrev" v-if="prevWork.data.length">
-					<i class="ui-decor"></i><br>
-					Предыдущая<br> работа
-				</a>
-				<a href="/" class="work__neighbor-link ml-auto" @click.prevent="openNext">
+				<a href="/" class="work__neighbor-link mr-auto" :class="{disabled: !nextWork.length}" @click.prevent="openNext">
 					<i class="ui-decor"></i><br>
 					Следующая<br> работа
+				</a>
+				<a href="/" class="work__neighbor-link ml-auto" :class="{disabled: !prevWork.length}" @click.prevent="openPrev">
+					<i class="ui-decor"></i><br>
+					Предыдущая<br> работа
 				</a>
 				<span class="work__neighbor--decore"></span>
 			</section>
@@ -115,12 +120,14 @@
 	import photo from '@/assets/bg-1.jpg'
 	import AppComment from '@/components/main/Comment'
 	import AppCommentForm from '@/components/main/CommentForm'
+	import CoolLightBox from 'vue-cool-lightbox'
+	import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
     export default {
 		validate({params}) {
 			return Boolean(params.id)
 		},
 		components: {
-			AppComment, AppCommentForm
+			AppComment, AppCommentForm, CoolLightBox
 		},
 		head() {
 			return {
@@ -128,21 +135,20 @@
 			}
 		},
 		async asyncData({store, params}) {
-			const work = await store.dispatch('work/fetchById', params.id)
-			await store.dispatch('work/addView', work)
-			let prevWork = null
-			await store.dispatch('work/getPrevWork', work._id).then(data => {
-				prevWork = data
-			})
+			const query = await store.dispatch('work/fetchById', params.id)
+			await store.dispatch('work/addView', query.currentWork)
 			return {
-				work: {...work, views: ++work.views},
-				prevWork: prevWork
+				work: {...query.currentWork, views: ++query.currentWork.views},
+				prevWork: query.prevWork,
+				nextWork: query.nextWork,
 			}
 		},
 		data() {
 			return {
 				photo,
-				canAddComment: true
+				canAddComment: true,
+				index: null,
+				previous: ''
 			}
 		},
 		computed: {
@@ -153,9 +159,15 @@
 				return this.work.tech.join(',')
 			},
 			shareUrl() {
-				// return `${location.protocol}//${location.hostname}:${location.port}${this.$route.fullPath}`
-				return `http://localhost:3000${this.$route.fullPath}`
-			}
+				return `https://flokiowl.herokuapp.com${this.$route.fullPath}`
+			},
+			imageArr() {
+				let imageArr = []
+				this.work.image.forEach(img => {
+					imageArr.push(img.url)
+				})
+				return imageArr
+			},
 		},
 		methods: {
 			createCommentHandler(comment) {
@@ -163,10 +175,10 @@
 				this.canAddComment = false
 			},
 			openPrev() {
-				this.$router.push(`/work/${this.prevWork.data.data[0].id}`)
+				this.$router.push(`/work/${this.prevWork[0]._id}`)
 			},
 			openNext() {
-				console.log('not yet')
+				this.$router.push(`/work/${this.nextWork[0]._id}`)
 			}
 		}
     }
@@ -198,10 +210,17 @@
 		}
 	}
 	.work__image {
+		position: relative;
+		padding-bottom: 65%;
 		img {
 			max-width: 100%;
 			box-shadow: 0 0 20px rgba(0,0,0,.1);
 			border-radius: 3px;
+			cursor: pointer;
+			object-fit: cover;
+			object-position: center;
+			position: absolute;
+			height: 100%;
 		}
 	}
 	.work__meta {
@@ -256,6 +275,10 @@
 		color: #000;
 		font-weight: 700;
 		text-align: center;
+		&.disabled {
+			opacity: .2;
+			pointer-events: none;
+		}
 		&.ml-auto {
 			margin-left: auto;
 		}

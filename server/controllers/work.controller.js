@@ -75,9 +75,10 @@ module.exports.getAll = async (req,res) => {
 
 module.exports.getById = async (req,res) => {
 	try {
-		await Work.findById(req.params.id).populate('comments').exec((error,work) => {
-			res.json(work)
-		})
+		const currentWork = await Work.findById(req.params.id).populate('comments')
+		const prevWork = await Work.find({"date": {"$lt": new Date(currentWork.date)}}).limit(1)
+		const nextWork = await Work.find({"date": {"$gt": new Date(currentWork.date)}}).sort({date: 1}).limit(1)
+		res.json({currentWork,prevWork,nextWork})
 	} catch(e) {
 		res.status(500).json(e)
 	}
@@ -100,17 +101,6 @@ module.exports.addView = async (req,res) => {
 		await Work.findOneAndUpdate({_id: req.params.id}, {$set})
 		res.status(204).json()
 	} catch(e) {
-		res.status(500).json(e)
-	}
-}
-
-module.exports.prevWork = async (req,res) => {
-	try {
-		const currentWork = await Work.findById(req.params.id)
-		await Work.find({"date": {"$lt": new Date(currentWork.date)}}).limit(1).exec((error,work) => {
-			res.json(work)
-		})
-	} catch (e) {
 		res.status(500).json(e)
 	}
 }

@@ -41,6 +41,5 @@ router.delete(
 router.get('/', ctr.getAll)
 router.get('/:id', ctr.getById)
 router.put('/add/view/:id', ctr.addView)
-router.get('/get/previous/:id', ctr.prevWork)
 
 module.exports = router

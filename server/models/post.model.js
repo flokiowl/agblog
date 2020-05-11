@@ -9,6 +9,7 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
+	category: [],
 	tags: [],
 	date: {
 		type: Date,

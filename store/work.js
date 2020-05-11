@@ -94,13 +94,5 @@ export const actions = {
 			commit('setError', e, {root:true})
 			throw e
 		}
-	},
-	async getPrevWork({commit}, id) {
-		try {
-			return await this.$axios.get(`/api/work/get/previous/${id}`)
-		} catch(e) {
-			commit('setError', e, {root:true})
-			throw e
-		}
 	}
 }

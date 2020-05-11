@@ -63,8 +63,8 @@
 				links: [
 					{text:'Главная', url: '/' },
 					{text:'Резюме', url: '/resume' },
-					{text:'Портфолио', url: '/portfolio' },
-					{text:'IT-новости', url: '/blog' },
+					{text:'Портфолио', url: '/work' },
+					{text:'IT-новости', url: '/post' },
 					{text:'Контакты', url: '/contact' }
 				]
 			}

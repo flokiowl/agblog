@@ -52,6 +52,7 @@ router.get(
 //base: /api/post
 router.get('/', ctr.getAll)
 router.get('/:id', ctr.getById)
+router.get('/get/popular', ctr.getPopular)
 router.put('/add/view/:id', ctr.addView)
 
 module.exports = router

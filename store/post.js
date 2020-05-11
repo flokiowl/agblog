@@ -15,11 +15,12 @@ export const actions = {
 			throw e
 		}
 	},
-    async create({commit}, {title, text, tags, date, teaser, image}) {
+    async create({commit}, {title, text, category, tags, date, teaser, image}) {
         try {
             const fd = new FormData()
             fd.append('title', title)
             fd.append('text', text)
+			fd.append('category', JSON.stringify(category))
 			fd.append('tags', JSON.stringify(tags))
 			fd.append('teaser', teaser)
 			fd.append('date', date)
@@ -34,12 +35,15 @@ export const actions = {
             throw e
         }
     },
-    async update({commit}, {id, title, text, tags, date, image}) {
+    async update({commit}, {id, title, text, category, tags, date, image}) {
         try {
 			const fd = new FormData()
 			fd.append('title', title)
 			fd.append('text', text)
 			fd.append('date', date)
+			if (category !== undefined) {
+				fd.append('category', JSON.stringify(category))
+			}
 			if (tags !== undefined) {
 				fd.append('tags', JSON.stringify(tags))
 			}
@@ -100,6 +104,14 @@ export const actions = {
     		return await this.$axios.$get('/api/post/admin/get/analytics')
 		} catch(e) {
     		commit('setError', e, {root: true})
+			throw e
+		}
+	},
+	async getPopular({commit}) {
+		try {
+			return await this.$axios.$get('/api/post/get/popular')
+		} catch(e) {
+			commit('setError', e, {root: true})
 			throw e
 		}
 	}

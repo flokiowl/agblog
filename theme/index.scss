@@ -51,15 +51,15 @@ pre, .ql-syntax {
 }
 .page-enter {
 	opacity:0;
-	padding-top: 15px;
+	padding-top: 10px;
 }
 .page-leave-to {
 	opacity:0;
-	padding-top: 15px;
+	padding-top: 10px;
 }
 .page-enter-active,
 .page-leave-active {
-	transition:all .4s ease;
+	transition:all .3s ease;
 }
 .page-enter-to,
 .page-leave {

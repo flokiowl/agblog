@@ -1,15 +1,16 @@
 <template>
 	<el-form @submit.native.prevent="onSubmit" :model="controls" :rules="rules" ref="form" class="demo-ruleForm">
         <h2 class="comment__title">Добавить комментарий</h2>
-		<el-form-item class="comment__name" label="Ваше имя" prop="name" v-if="!userName">
-			<el-input v-model="controls.name" />
-		</el-form-item>
-		<el-form-item class="comment__name" label="Ваше имя" prop="name" v-else>
-			<el-input v-model="controls.name" disabled />
-			<span class="comment__name-change" @click="clearName">Изменить</span>
+		<el-form-item class="comment__name" label="Ваше имя" prop="name">
+			<el-input v-model="controls.name" placeholder="Укажите имя" />
 		</el-form-item>
         <el-form-item class="comment__text" label="Текст комментария" prop="text">
-			<vue-editor :editorOptions="editorSettings" :editorToolbar="customToolbar" v-model="controls.text"></vue-editor>
+			<el-input
+				type="textarea"
+				:rows="6"
+				placeholder="Введите сообщение"
+				v-model="controls.text">
+			</el-input>
 		</el-form-item>
 		<el-form-item class="comment__submit intro__button">
 			<span class="ui-line-decore"></span>
@@ -22,11 +23,6 @@
 </template>
 
 <script>
-	import hljs from 'highlight.js'
-	import { VueEditor } from "vue2-editor"
-	import Cookie from 'cookie'
-	import Cookies from 'js-cookie'
-	import { uuid } from 'vue-uuid'
 	export default {
 		props: {
 			postId: {
@@ -36,15 +32,9 @@
 				type: String
 			}
 		},
-		components: {
-			VueEditor
-		},
         data() {
             return {
                 loading: false,
-				uuid: uuid.v1(),
-				userId: null,
-				userName: null,
                 controls: {
                     name: '',
                     text: ''
@@ -56,24 +46,7 @@
                     text: [
                         { required: true, message: 'Введите ваш комментарий', trigger: 'change' }
                     ]
-                },
-				editorSettings: {
-					theme: 'snow',
-					modules: {
-						syntax: {
-							highlight: text => hljs.highlightAuto(text).value
-						}
-					}
-				},
-				customToolbar: [
-					["bold", "italic", "underline"],
-					[{ list: "ordered" }, { list: "bullet" }],
-					[{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}],
-					['blockquote', 'code-block'],
-					[{ 'color': [] }, { 'background': [] }],
-					[{ 'script': 'sub'}, { 'script': 'super' }],
-					['clean']
-				]
+                }
             }
         },
         methods: {
@@ -91,12 +64,6 @@
                         if (this.workId) {
 							formData.workId = this.workId
 						}
-						if (!!Cookies.get('uid') === false) {
-							Cookies.set('uid', this.uuid.v4())
-						}
-						if (!!Cookies.get('userName') === false) {
-							Cookies.set('userName', this.controls.name)
-						}
                         try {
                         	const newComment = await this.$store.dispatch('comment/create', formData)
                             this.$message.success('Комментарий добавлен')
@@ -106,26 +73,13 @@
                         }
                     }
                 })
-            },
-			clearName() {
-            	Cookies.remove('userName')
-				this.userName = null
-			}
-        },
-		mounted() {
-			if (!!Cookies.get('uid')) {
-				this.userId = Cookies.get('uid')
-			}
-			if (!!Cookies.get('userName')) {
-				this.userName = Cookies.get('userName')
-				this.controls.name = this.userName
-			}
-		}
+            }
+        }
 	}
 </script>
 
 <style lang="scss">
-	.comments,
+	/*.comments,
 	.work__comments {
 		.quillWrapper {
 			margin-top: 40px;
@@ -155,7 +109,7 @@
 				}
 			}
 		}
-	}
+	}*/
 	.comment__name {
 		position: relative;
 		margin-bottom: 12px;
@@ -173,17 +127,13 @@
 			}
 		}
 	}
-	.comment__name-change {
-		position: absolute;
-		top: 15px;
-		right: 0;
-		font-size: 12px;
-		line-height: 1;
-		color: #777;
-		cursor: pointer;
-		&:hover {
-			color: #777;
-			text-decoration: underline;
+	.comment__text {
+		.el-textarea__inner {
+			border-radius: 0;
+			background: #f4f4f4;
+			border: 0;
+			padding: 15px 20px;
+			font-family: 'Artegra sans';
 		}
 	}
 	.comment__submit {

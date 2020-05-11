@@ -88,20 +88,34 @@
 				</el-col>
 				<el-col :span="24">
 					<div class="map-wrapper">
-						<GmapMap
-							:center="{lat:50.130253, lng:30.656062}"
-							:zoom="10"
-							:options="mapOptions"
-							map-type-id="terrain"
-							style="height: 400px"
-						>
-							<GmapMarker
-								:position="google && new google.maps.LatLng(50.130253, 30.656062)"
-								:clickable="true"
-								:draggable="true"
-								:icon="markerOptions"
-							/>
-						</GmapMap>
+						<GMap ref="gMap" :cluster="{options: {styles: clusterStyle}}"
+							:center="{lat: locations[0].lat, lng: locations[0].lng}"
+							:options="{fullscreenControl: false, streetViewControl: false, mapTypeControl: false, zoomControl: true, gestureHandling: 'cooperative', styles: mapStyle}"
+							:zoom="7">
+							<GMapMarker v-for="location in locations" :key="location.id"
+								:position="{lat: location.lat, lng: location.lng}"
+								:options="{icon: location === currentLocation ? pins.selected : pins.notSelected}"
+								@click="currentLocation = location">
+								<GMapInfoWindow>
+									<h3 class="text-center mb">{{ location.name }}</h3>
+									<div class="map-info-item">
+										<b>Население:</b> 
+										<span>{{location.people}}</span>
+									</div>
+									<div class="map-info-item">
+										<b>Площадь, км<sup><small>2</small></sup>:</b> 
+										<span>{{location.area}}</span>
+									</div>
+									<br>
+									<br>
+									<code>
+										y: {{ location.lat }},
+										x: {{ location.lng }}
+									</code>
+								</GMapInfoWindow>
+							</GMapMarker>
+							<GMapCircle :options="circleOptions" />
+						</GMap>
 					</div>
 				</el-col>
 			</el-row>
@@ -110,7 +124,9 @@
 </template>
 
 <script>
-	import { gmapApi } from 'vue2-google-maps';
+	import {
+		gmapApi
+	} from 'vue2-google-maps';
 	import mapStyle from '@/assets/map-style.json'
 	import photo from '@/assets/bg-1.jpg'
 	export default {
@@ -120,15 +136,39 @@
 		},
 		data() {
 			return {
-				photo, mapStyle,
-				mapOptions: {
-					disableDefaultUI: true,
-					styles: mapStyle
+				photo,
+				mapStyle,
+				currentLocation: {},
+				circleOptions: {},
+				locations: [
+					{
+						lat: 50.130253,
+						lng: 30.656062,
+						name: "Обухов",
+						people: "33 610",
+						area: "24,2"
+					},
+					{
+						lat: 50.45466,
+						lng: 30.5238,
+						name: "Киев",
+						people: "2 951 482",
+						area: "839"
+					},
+				],
+				pins: {
+					selected: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHElEQVR42uVVyw4BMRQdC98lsbPwG5YSH+BzWFtLZilh0oQgFh6J54IwBmGYtrfaBREdcTvDhpM0adrec3rb+7Csn8fRdrLg7VzBubhDzmHrudRuZ2KRs/miLd6AThfNaOTTGRFIsMm8bkSuXBeGoLVaGi0g39wLI4GTf1EjdE/+E1pAAGgEAenkb/tBo1vQFUDgBbSbny6al77uSQwB/6wJSNHoAo8xj30iaYMW4Lv9wfSTpc0eH6atXtE4TKWNUS4AY2hyddY4k/lwVEZncm9QilQuBGPwnp1B5GIXGi3P0eU0c7EqKrje5hU5d7fr2P2AEJIESkNqB1XJkvhI0/GrTuqZX619tLMF/VHlfnk5/0r7ZMvVWA3rr3AF6LIMZ7PmSlUAAAAASUVORK5CYII=",
+					notSelected: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHElEQVR42uVVyw4BMRQdC98lsbPwG5YSH+BzWFtLZilh0oQgFh6J54IwBmGYtrfaBREdcTvDhpM0adrec3rb+7Csn8fRdrLg7VzBubhDzmHrudRuZ2KRs/miLd6AThfNaOTTGRFIsMm8bkSuXBeGoLVaGi0g39wLI4GTf1EjdE/+E1pAAGgEAenkb/tBo1vQFUDgBbSbny6al77uSQwB/6wJSNHoAo8xj30iaYMW4Lv9wfSTpc0eH6atXtE4TKWNUS4AY2hyddY4k/lwVEZncm9QilQuBGPwnp1B5GIXGi3P0eU0c7EqKrje5hU5d7fr2P2AEJIESkNqB1XJkvhI0/GrTuqZX619tLMF/VHlfnk5/0r7ZMvVWA3rr3AF6LIMZ7PmSlUAAAAASUVORK5CYII="
 				},
-				markerOptions: {
-					url:'https://img.icons8.com/ultraviolet/40/000000/marker.png',
-					title:'г.Обухов, Киевская область, Украина'
-				}
+				mapStyle: mapStyle,
+				clusterStyle: [
+					{
+						url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png",
+						width: 56,
+						height: 56,
+						textColor: "#fff"
+					}
+				]
 			}
 		},
 		computed: {
@@ -138,7 +178,10 @@
 </script>
 
 <style lang="scss">
-
+	.map-info-item {
+		display: flex;
+		justify-content: space-between;
+	}
 	.contact {
 		padding-bottom: 100px;
 	}

@@ -11,12 +11,26 @@
 		<div class="admin-content">
         	<el-form @submit.native.prevent="onSubmit" :model="controls" :rules="rules" ref="form" class="demo-ruleForm">
 				<el-row :gutter="10">
-					<el-col :span="12">
+					<el-col :span="9">
 						<el-form-item label="Название поста" prop="title">
 							<el-input v-model="controls.title" placeholder="Введите название поста"/>
 						</el-form-item>
 					</el-col>
-					<el-col :span="6">
+					<el-col :span="5">
+						<el-form-item label="Категория" prop="category">
+							<el-select
+								style="width: 100%;"
+								v-model="controls.category"
+								multiple
+								allow-create
+								filterable
+								empty
+								automatic-dropdown
+								placeholder="Категория">
+							</el-select>
+						</el-form-item>
+					</el-col>
+					<el-col :span="5">
 						<el-form-item label="Теги" prop="tags">
 							<el-select
 								style="width: 100%;"
@@ -36,7 +50,7 @@
 							</el-select>
 						</el-form-item>
 					</el-col>
-					<el-col :span="6">
+					<el-col :span="5">
 						<el-form-item label="Дата" prop="date">
 							<el-date-picker
 								style="width: 100%;"
@@ -109,6 +123,7 @@
 					title: '',
 					text: '',
 					date: '',
+					category: [],
 					tags: [],
 					teaser: ''
 				},
@@ -151,6 +166,7 @@
 								title: this.controls.title,
 								text: this.controls.text,
 								tags: this.controls.tags,
+								category: this.controls.category,
 								date: this.controls.date,
 								teaser: this.controls.teaser,
 								image: this.image
@@ -158,6 +174,7 @@
 							await this.$store.dispatch('post/create', formData)
 							this.controls.title = ''
 							this.controls.text = ''
+							this.controls.category = []
 							this.controls.tags = []
 							this.controls.date = ''
 							this.controls.teaser = ''

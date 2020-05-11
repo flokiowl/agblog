@@ -48,7 +48,7 @@ export default {
 	}
 	.footer__copyright {
 		a {
-			color: #000;
+			color: #333;
 			font-weight: 700;
 		}
 	}
