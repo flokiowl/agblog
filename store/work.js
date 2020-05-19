@@ -94,5 +94,13 @@ export const actions = {
 			commit('setError', e, {root:true})
 			throw e
 		}
+	},
+	async homeWorks({commit}) {
+		try {
+			return await this.$axios.$get('/api/work/get/home')
+		} catch(e) {
+			commit('setError', e, {root:true})
+			throw e
+		}
 	}
 }

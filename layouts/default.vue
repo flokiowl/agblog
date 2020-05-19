@@ -39,6 +39,7 @@ export default {
 	}
 	.footer {
 		background: #fff;
+		padding-top: 50px;
 	}
 	.footer__content {
 		padding-top: 50px;

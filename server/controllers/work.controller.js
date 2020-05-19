@@ -35,13 +35,11 @@ module.exports.update = async (req,res) => {
 	if (req.body.tech) {
 		$set.tech = JSON.parse(req.body.tech)
 	}
-	console.log('req.body', req.body)
 	if (req.body.image) {
 		$set.image = []
 		req.body.image.forEach(img => {
 			$set.image.push(JSON.parse(img))
 		})
-		// $set.image = JSON.parse(req.body.image)
 	}
 	if (req.files.length > 0) {
 		const imageArr = []
@@ -100,6 +98,15 @@ module.exports.addView = async (req,res) => {
 	try {
 		await Work.findOneAndUpdate({_id: req.params.id}, {$set})
 		res.status(204).json()
+	} catch(e) {
+		res.status(500).json(e)
+	}
+}
+
+module.exports.homeWorks = async (req,res) => {
+	try {
+		const works = await Work.find().sort({date: -1}).limit(3)
+		res.json(works)
 	} catch(e) {
 		res.status(500).json(e)
 	}

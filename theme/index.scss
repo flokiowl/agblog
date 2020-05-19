@@ -51,20 +51,20 @@ pre, .ql-syntax {
 }
 .page-enter {
 	opacity:0;
-	padding-top: 10px;
+	//padding-top: 10px;
 }
 .page-leave-to {
 	opacity:0;
-	padding-top: 10px;
+	//padding-top: 10px;
 }
 .page-enter-active,
 .page-leave-active {
-	transition:all .3s ease;
+	transition:all .2s ease;
 }
 .page-enter-to,
 .page-leave {
 	opacity:1;
-	padding-top: 0;
+	//padding-top: 0;
 }
 
 .mb {
@@ -73,14 +73,16 @@ pre, .ql-syntax {
 .mb2 {
     margin-bottom: 2rem;
 }
+.section-padding {
+	padding: 50px 0;
+}
 .block-title {
-	text-align:center;
 	padding-bottom: 10px;
 	margin-bottom: 40px;
 	h3 {
 		display: inline-block;
 		margin: 0;
-		font-size: 36px;
+		font-size: 38px;
 		font-weight: 700;
 		color: #333 ;
 		position: relative;
@@ -93,6 +95,13 @@ pre, .ql-syntax {
 			height: 3px;
 			width: 150px;
 			transform: translateX(-50%);
+		}
+		&.h3--right {
+			&:after {
+				left: auto;
+				right: 0;
+				transform: translate(50%);
+			}
 		}
 	}
 	&.border--right {

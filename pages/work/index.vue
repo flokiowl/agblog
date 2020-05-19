@@ -237,9 +237,10 @@
 		align-items: center;
 		height: 48px;
 		margin-right: 5px;
+		font-weight: 600;
 	}
 	.el-select-dropdown__item.selected {
-		color: #db4454;
+		color: #000;
 	}
 	.portfolio__sort-mode {
 		height: 100%;

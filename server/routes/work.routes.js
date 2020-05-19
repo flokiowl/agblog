@@ -40,6 +40,7 @@ router.delete(
 //base: /api/work
 router.get('/', ctr.getAll)
 router.get('/:id', ctr.getById)
+router.get('/get/home/', ctr.homeWorks)
 router.put('/add/view/:id', ctr.addView)
 
 module.exports = router

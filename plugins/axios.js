@@ -1,5 +1,6 @@
 export default function ({$axios, redirect, store}) {
-
+    $axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+    
     $axios.interceptors.request.use(request => {
         if (store.getters['auth/isAuthenticated'] && !request.headers.common['Authorization']) {
             const token = store.getters['auth/token']
