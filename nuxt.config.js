@@ -25,6 +25,7 @@ module.exports = {
   	plugins: [
 		'@/plugins/globals',
 		'@/plugins/axios',
+		// { src: '@/plugins/swiper', mode: 'client' }
 		// { ssr: false, src: '@/plugins/googlemaps.js' }
     ],
   	buildModules: [

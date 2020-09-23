@@ -96,6 +96,55 @@
 				</el-row>
 			</div>
 		</section>
+		<section class="blog-swiper section-padding">
+			<div class="container">
+				<client-only>
+					<swiper :options="swiperOption">
+						<swiper-slide v-for="post in popularPosts" :key="post._id">
+							<div class="blog__item">
+								<div class="blog__data text-left">
+									<div class="blog__date">
+										<span class="blog__date--number">{{new Date(post.date) | dateFormat('D')}}</span>
+										<span class="blog__date--month">{{new Date(post.date) | dateFormat('MMM')}}</span>
+									</div>
+									<div class="blog__decore">
+										<i class="ui-decor"></i>
+									</div>
+									<div class="blog__data-item">
+										Просмотров
+										<span>{{post.views}}</span>
+									</div>
+									<div class="blog__data-item">
+										Комментариев
+										<span>{{post.comments.length}}</span>
+									</div>
+								</div>
+								<article class="blog__main">
+									<div class="blog__image">
+										<a :href="'/post/' + post._id" @click.prevent="openPost(post._id)">
+											<img :src="post.image[0].url" :alt="post.title">
+										</a>
+									</div>
+									<div class="blog__title">
+										<h2>
+											<a :href="'/post/' + post._id" @click.prevent="openPost(post._id)">{{post.title}}</a>
+										</h2>
+									</div>
+									<div class="blog__teaser">
+										<p>{{post.teaser}}</p>
+									</div>
+									<a :href="'/post/' + post._id" class="blog__swiper-link btn-default default--hover" @click.prevent="openPost(post._id)">
+										<span class="ui-line-decore"></span>
+										Читать больше
+										<i class="ui-decor"></i>
+									</a>
+								</article>
+							</div>
+						</swiper-slide>
+					</swiper>
+				</client-only>
+			</div>
+		</section>
 	</div>
 </template>
 
@@ -104,14 +153,19 @@
 	import s_image_2 from '@/assets/services/adaptive1.svg'
 	import s_image_3 from '@/assets/services/js1.svg'
 	import s_image_4 from '@/assets/services/cms1.svg'
+	import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+	import 'swiper/swiper-bundle.min.css'
+
 	export default {
 		name: 'home',
+		components: {Swiper, SwiperSlide},
 		head: {
 			title: `Главная | ${process.env.appName}`
 		},
 		async asyncData({store}) {
 			const works = await store.dispatch('work/homeWorks')
-			return {works}
+			const popularPosts = await store.dispatch('post/getPopular')
+			return {works, popularPosts}
 		},
 		data() {
 			return {
@@ -122,11 +176,19 @@
 					{image: s_image_4,name: 'CMS',text: 'Интеграция проекта в систему управления содержимым, настройка.'}
 				],
 				phases: [
-					{caption: 'Фаза 1', text: 'The Planning & Analysis'},
-					{caption: 'Фаза 2', text: 'Development Finalizing'},
-					{caption: 'Фаза 3', text: 'The Testing Fixing Bugs'},
-					{caption: 'Фаза 4', text: 'Delivering The Project'}
-				]
+					{caption: 'Фаза 1', text: 'Планирование и анализ'},
+					{caption: 'Фаза 2', text: 'Завершение разработки'},
+					{caption: 'Фаза 3', text: 'Тестирование и исправления ошибок'},
+					{caption: 'Фаза 4', text: 'Реализация проекта'}
+				],
+				swiperOption: {
+					slidesPerView: 2
+				}
+			}
+		},
+		methods: {
+			openPost(id) {
+				this.$router.push(`/post/${id}`)
 			}
 		}
 	}

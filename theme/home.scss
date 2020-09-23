@@ -67,7 +67,7 @@
 .btn-default {
     display: inline-block;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 16px;
     letter-spacing: 0.1em;
     font-weight: 700;
@@ -263,12 +263,15 @@
 }
 
 //phases
+.phases {
+    margin-bottom: 100px;
+}
 .phases__row {
 	position: relative;
 }
 .phases__item {
 	position: relative;
-	padding-top: 130px;
+	padding-top: 110px;
 }
 .phases__caption {
 	position: absolute;
@@ -280,7 +283,7 @@
 		content: '';
 		position: absolute;
 		bottom: -36px;
-		left: 30px;
+		left: 20px;
 		width: 15px;
 		height: 15px;
 		background: #ddd;
@@ -288,7 +291,7 @@
 		z-index: 1;
 	}
 	.ui-decor {
-		margin-left: 35px;
+		margin-left: 30px;
 		&:after {
 			font-size: 13px;
 			font-weight: 300;
@@ -296,10 +299,10 @@
 	}
 }
 .phases__text {
-	font-size: 28px;
+	font-size: 24px;
 	color: #777;
 	font-weight: 300;
-	padding-right: 20px;
+	padding-right: 26px;
 }
 .phases__ui-line {
 	position: absolute;
@@ -309,6 +312,74 @@
 	background: #eee;
 	height: 1px;
 }
+
+.blog-swiper {
+    position: relative;
+    padding-top: 110px;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 160px;
+        left: -3000px;
+        right: -3000px;
+        background: #f7f7f7;
+    }
+    .blog__item {
+        padding-bottom: 0;
+        background: transparent;
+    }
+    .blog__decore  {
+        i {
+            &:after {
+                font-size: 16px;
+            }
+        }
+    }
+    .blog__date--number {
+        font-weight: 700;
+    }
+    .blog__image {
+        img {
+            height: 250px;
+            max-height: 100%;
+            width: auto;
+        }
+    }
+    .blog__swiper-link {
+        font-size: 13px;
+        .ui-line-decore {
+            margin-bottom: 20px;
+            &:after {
+                height: 120px;
+            }
+        }
+    }
+    .blog__title {
+        h2 {
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            &:after {
+                display: none;
+            }
+        }
+    }
+    .blog__teaser {
+        margin-bottom: 100px;
+        p {
+            max-height: 66px;
+            min-height: 66px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+        }
+    }
+}
+
+
 
 
 //responsive

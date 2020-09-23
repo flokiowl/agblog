@@ -49,7 +49,7 @@
 								<footer class="post__footer">
 									<div class="post__tags">
 										<b>Теги:</b>
-										<a href="/" class="default--hover" @click.prevent="tagFilter(tag)" v-for="(tag,index) in post.tags">
+										<a href="/" class="default--hover" @click.prevent="tagFilter(tag)" v-for="(tag,index) in post.tags" :key="tag">
 											<template v-if="index">, </template>
 											<span>{{tag}}</span>
 										</a>
@@ -168,6 +168,9 @@
 			},
 			tagFilter(tag) {
 				this.$router.push({path: '/post', query: {'tag': tag}})
+			},
+			openPost(id) {
+				this.$router.push(`/post/${id}`)
 			}
 		}
 	}
