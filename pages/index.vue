@@ -2,8 +2,8 @@
 	<div class="template-home">
 		<section class="intro" id="intro">
 			<div class="container">
-				<el-row class="row">
-					<el-col :xs="24" :md="12">
+				<el-row class="row intro__row">
+					<el-col :xs="24" :md="12" class="intro__left-col">
 						<div class="intro__left bg-grey bg-grey--full-width">
 							<span class="intro__sub style-x">Front end developer</span>
 							<h2 class="intro__title">Андрей Голуб</h2>
@@ -14,7 +14,7 @@
 							<nuxt-link to="/work" class="btn-default default--hover">Посмотреть работы <i class="ui-decor"></i></nuxt-link>
 						</div>
 					</el-col>
-					<el-col :xs="24" :md="12" class="col-6">
+					<el-col :xs="24" :md="12" class="col-6 intro__right-col">
 						<div class="intro__right">
 							<div class="intro__photo">
 								<img src="@/assets/about.jpg" alt="Андрей Голуб">
@@ -50,8 +50,8 @@
 					<span class="intro__sub style-x">Front end development</span><br>
 					<h3 class="h3--right">Работы в портфолио</h3>
 				</div>
-				<el-row class="home-works__row">
-					<el-col :span="18">
+				<el-row class="home-works__row top">
+					<el-col :span="18" class="home-works__col">
 						<el-row :gutter="30" class="home-works__row">
 							<el-col :xs="24" :sm="12" v-for="work in works" :key="work._id">
 								<nuxt-link class="home-works__link" :to="`/work/${work._id}`">
@@ -66,7 +66,7 @@
 							</el-col>
 						</el-row>
 					</el-col>
-					<el-col :span="6">
+					<el-col :span="6" class="home-works__col">
 						<div class="home-works__right">
 							<span>Web design</span>
 							<span>Animation</span>
@@ -83,7 +83,7 @@
 		<section class="phases section-padding">
 			<div class="container">
 				<el-row class="phases__row">
-					<el-col :span="6" v-for="(phase,i) in phases" :key="i">
+					<el-col class="phases__col" :xs="12" :sm="6" v-for="(phase,i) in phases" :key="i">
 						<div class="phases__item">
 							<h4 class="phases__caption">
 								<i class="ui-decor"></i> <br>
@@ -182,7 +182,14 @@
 					{caption: 'Фаза 4', text: 'Реализация проекта'}
 				],
 				swiperOption: {
-					slidesPerView: 2
+					slidesPerView: 1,
+					spaceBetween: 50,
+					grabCursor: true,
+					breakpoints: {
+						991: {
+							slidesPerView: 2
+						},
+					}
 				}
 			}
 		},

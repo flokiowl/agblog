@@ -291,12 +291,15 @@ span.breadcrumbs-link {
 }
 @media (min-width: 768px) {
 	.container {
-		width: 750px;
+		padding-right: 30px;
+		padding-left: 30px;
 	}
 }
 @media (min-width: 992px) {
 	.container {
 		width: 970px;
+		padding-left: 15px;
+		padding-right: 15px;
 	}
 }
 @media (min-width: 1200px) {
@@ -307,6 +310,19 @@ span.breadcrumbs-link {
 @media (min-width: 1300px) {
 	.container {
 		width: 1240px;
+	}
+}
+@media screen and (max-width:1450px) {
+    .block-title {
+		h3 {
+			&.h3--right {
+				&:after {
+					left: 0;
+					right: auto;
+					transform: translate(-50%);
+				}
+			}
+		}
 	}
 }
 

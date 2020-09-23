@@ -79,7 +79,7 @@
 					{text:'Главная', url: '/' },
 					{text:'Резюме', url: '/resume' },
 					{text:'Портфолио', url: '/work' },
-					{text:'IT-новости', url: '/post' },
+					{text:'Интересное', url: '/post' },
 					{text:'Контакты', url: '/contact' }
 				]
 			}

@@ -4,11 +4,11 @@
 			<div class="container">
 				<div class="text-center">
 					<h2 class="page-title text-center">
-						IT-новости
+						Интересное
 						<div class="page-title-bottom">
 							<ul class="breadcrumbs">
 								<li class="breadcrumbs-item"><nuxt-link to="/" class="breadcrumbs-link">Главная</nuxt-link></li>
-								<li class="breadcrumbs-item"><nuxt-link to="/post" class="breadcrumbs-link">IT-новости</nuxt-link></li>
+								<li class="breadcrumbs-item"><nuxt-link to="/post" class="breadcrumbs-link">Интересное</nuxt-link></li>
 								<li><span class="breadcrumbs-link">Пост</span></li>
 							</ul>
 						</div>
