@@ -53,4 +53,24 @@ export default {
 			font-weight: 700;
 		}
 	}
+	@media screen and (max-width: 991px) {
+		.footer__content {
+			margin-left: 0;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	}
+	@media screen and (max-width: 768px) {
+		.footer__content {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+	@media screen and (max-width: 480px) {
+		.footer__copyright {
+			a {
+				display: block;
+			}
+		}
+	}
 </style>

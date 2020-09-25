@@ -48,7 +48,7 @@
 			<div class="container">
 				<div class="block-title text-right">
 					<span class="intro__sub style-x">Front end development</span><br>
-					<h3 class="h3--right">Работы в портфолио</h3>
+					<h3 class="h3--right">Портфолио</h3>
 				</div>
 				<el-row class="home-works__row top">
 					<el-col :span="18" class="home-works__col">
@@ -137,7 +137,7 @@
 									</div>
 									<a :href="'/post/' + post._id" class="blog__swiper-link btn-default default--hover" @click.prevent="openPost(post._id)">
 										<span class="ui-line-decore"></span>
-										Читать больше
+										<span class="text">Читать больше</span>
 										<i class="ui-decor"></i>
 									</a>
 								</article>
