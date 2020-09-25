@@ -111,12 +111,14 @@
 										<i class="ui-decor"></i>
 									</div>
 									<div class="blog__data-item">
-										Просмотров
-										<span>{{post.views}}</span>
+										<i class="el-icon-view"></i>
+										<span class="text">Просмотров</span>
+										<span class="counter">{{post.views}}</span>
 									</div>
 									<div class="blog__data-item">
-										Комментариев
-										<span>{{post.comments.length}}</span>
+										<i class="el-icon-chat-dot-round"></i>
+										<span class="text">Комментариев</span>
+										<span class="counter">{{post.comments.length}}</span>
 									</div>
 								</div>
 								<article class="blog__main">

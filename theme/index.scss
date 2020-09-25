@@ -312,6 +312,8 @@ span.breadcrumbs-link {
 		width: 1240px;
 	}
 }
+
+//
 @media screen and (max-width:1450px) {
     .block-title {
 		h3 {
@@ -322,6 +324,26 @@ span.breadcrumbs-link {
 					transform: translate(-50%);
 				}
 			}
+		}
+	}
+}
+
+@media screen and (max-width:550px) {
+	.block-title {
+		h3 {
+			font-size: 30px;
+			&:after {
+				width: 100px;
+				left: 50%;
+			}
+		}
+		h3.h3--right {
+			&:after {
+				left: 50%;
+			}
+		}
+		&.text-right {
+			text-align: center;
 		}
 	}
 }
