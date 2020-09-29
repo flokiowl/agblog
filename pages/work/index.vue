@@ -45,7 +45,7 @@
 			</section>
 			<el-row :gutter="25">
 				<transition-group name="work-list" tag="div" v-if="displayedWorks.length > 0">
-					<el-col :span="12" v-for="work in displayedWorks" :key="work._id" class="work-list-item">
+					<el-col :xs="24" :sm="12" v-for="work in displayedWorks" :key="work._id" class="work-list-item">
 						<div class="portfolio__item">
 							<nuxt-link class="portfolio__link" :to="`/work/${work._id}`"></nuxt-link>
 							<figure class="portfolio__inner">
@@ -188,9 +188,9 @@
 		transition: all 0.6s;
 	}
 	//
-	.portfolio {
-		padding-bottom: 100px;
-	}
+	// .portfolio {
+	// 	padding-bottom: 100px;
+	// }
 	.portfolio__tools {
 		padding-bottom: 40px;
 		display: flex;
@@ -324,5 +324,54 @@
 		color: #333;
 		position: relative;
 		transition: all .6s;
+	}
+
+	@media screen and (max-width:768px) {
+		.portfolio__tools {
+			flex-direction: column;
+		}
+		.portfolio__tools-item {
+			&:first-child {
+				margin-bottom: 20px;
+			}
+			&:last-child {
+				display: flex;
+				justify-content: center;
+			}
+			.input-group {
+				margin-right: 0;
+			}
+		}
+		.portfolio__sort-mode {
+			height: 48px;
+		}
+	}
+	
+	@media screen and (max-width:550px) {
+		.portfolio__sort-caption {
+			display: none;
+		}
+		.portfolio__tools-item {
+			.el-select {
+				flex-grow: 1;
+			}
+		}
+		.portfolio__hover {
+			height: 70px;
+			padding: 5px;
+		}
+		.portfolio__name {
+			font-size: 16px;
+			line-height: 18px;
+			max-height: 18px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			display: -webkit-box;
+		}
+		.portfolio__date {
+			font-size: 14px;
+		}
 	}
 </style>

@@ -185,9 +185,9 @@
 </script>
 
 <style lang="scss">
-	.portfolio__page {
-		padding-bottom: 100px;
-	}
+	// .portfolio__page {
+	// 	padding-bottom: 100px;
+	// }
 	.work__top {
 		h1 {
 			position: relative;
