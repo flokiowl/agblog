@@ -328,6 +328,28 @@ span.breadcrumbs-link {
 	}
 }
 
+@media screen and (max-width:768px) {
+	.site-page-title {
+		padding-top: 120px;
+		padding-bottom: 80px;
+	}
+	.page-title {
+		width: 100%;
+		font-size: 36px;
+		transform: translateX(0);
+		&:after {
+			right: 0;
+			left: 0;
+		}
+	}
+	.page-title-bottom {
+		right: auto;
+		left: 0;
+		bottom: auto;
+		top: calc(100% + 10px);
+	}
+}
+
 @media screen and (max-width:550px) {
 	.block-title {
 		h3 {

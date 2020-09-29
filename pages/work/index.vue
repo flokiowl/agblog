@@ -17,7 +17,7 @@
 		</div>
 		<div class="container">
 			<section class="portfolio__tools">
-				<div class="portfolio__tools-item" v-for="(f,i) in filters" style="flex-grow:1">
+				<div class="portfolio__tools-item" v-for="(f,i) in filters" :key="f + '_' + i" style="flex-grow:1">
 					<template v-if="f.type === 'Search'">
 						<div class="input-group">
 							<el-input ref="search-input" placeholder="Введите значение" v-model="searchValue" @keyup.enter.native="f.value = searchValue"></el-input>
@@ -45,7 +45,7 @@
 			</section>
 			<el-row :gutter="25">
 				<transition-group name="work-list" tag="div" v-if="displayedWorks.length > 0">
-					<el-col :span="12" v-for="(work,index) in displayedWorks" :key="work.name + index" class="work-list-item">
+					<el-col :span="12" v-for="work in displayedWorks" :key="work._id" class="work-list-item">
 						<div class="portfolio__item">
 							<nuxt-link class="portfolio__link" :to="`/work/${work._id}`"></nuxt-link>
 							<figure class="portfolio__inner">

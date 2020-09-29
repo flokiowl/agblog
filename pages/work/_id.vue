@@ -27,20 +27,20 @@
 				<h1>{{work.name}}</h1>
 			</div>
 			<el-row :gutter="50" class="mb2">
-				<el-col :span="12">
+				<el-col :xs="24" :sm="12">
 					<div class="work__image">
 						<img :src="work.image[0].url" :alt="work.name" @click="index = 0">
 					</div>
 				</el-col>
-				<el-col :span="12">
-					<div class="work__info">
+				<el-col :xs="24" :sm="12">
+					<div class="work__info" style="margin-bottom: 0;">
 						<h3 class="work__title">Описание проекта</h3>
 						<div class="work__description" v-html="work.description"></div>
 					</div>
 				</el-col>
 			</el-row>
 			<el-row :gutter="50" class="mb2">
-				<el-col :span="12">
+				<el-col :xs="24" :sm="12">
 					<div class="work__info">
 						<h3 class="work__title" @click="openPrev">Подробности</h3>
 						<div class="work__meta" v-if="work.date">
@@ -57,7 +57,7 @@
 						</div>
 						<div class="work__meta" v-if="work.tech">
 							<span class="work__meta-title">Технологии</span>
-							<span class="work__meta-value" v-for="(t,index) in work.tech" :key="t"><template v-if="index">,</template> {{t}}</span>
+							<span class="work__meta-value"><template v-for="(t,index) in work.tech"><template v-if="index">,</template> {{t}}</template></span>
 						</div>
 						<social-sharing :url="shareUrl" :title="work.name" :hashtags="techString" inline-template>
 							<div class="work__share">
@@ -69,19 +69,19 @@
 						</social-sharing>
 					</div>
 				</el-col>
-				<el-col :span="12" v-if="work.image[1]">
+				<el-col :xs="24" :sm="12" v-if="work.image[1]">
 					<div class="work__image">
 						<img :src="work.image[1].url" :alt="work.name" @click="index = 1">
 					</div>
 				</el-col>
 			</el-row>
 			<el-row :gutter="50" class="mb2" v-if="work.image[2] || work.image[3]">
-				<el-col :span="12" v-if="work.image[2]">
+				<el-col :xs="24" :sm="12" v-if="work.image[2]">
 					<div class="work__image">
 						<img :src="work.image[2].url" :alt="work.name" @click="index = 2">
 					</div>
 				</el-col>
-				<el-col :span="12" v-if="work.image[3]">
+				<el-col :xs="24" :sm="12" v-if="work.image[3]">
 					<div class="work__image">
 						<img :src="work.image[3].url" :alt="work.name" @click="index = 3">
 					</div>
@@ -213,6 +213,7 @@
 		position: relative;
 		padding-bottom: 65%;
 		img {
+			min-width: 100%;
 			max-width: 100%;
 			box-shadow: 0 0 20px rgba(0,0,0,.1);
 			border-radius: 3px;
@@ -228,7 +229,6 @@
 	}
 	.work__meta-title {
 		display: inline-block;
-		width: 130px;
 		font-size: 13px;
 		text-transform: uppercase;
 		color: #000;
@@ -253,6 +253,7 @@
 			font-weight: 500;
 			color: #333;
 			display: inline-block;
+			cursor: pointer;
 			&:hover {
 				color: #fff;
 				background: #333;
@@ -328,5 +329,59 @@
 		font-size: 18px;
 		font-style: italic;
 		color: #555;
+	}
+
+	@media screen and (max-width:768px) {
+		.work__top {
+			text-align: center;
+			span {
+				font-size: 13px;
+			}
+			h1 {
+				font-size: 32px;
+				margin-bottom: 30px;
+			}
+		}
+		.work__image {
+			margin-bottom: 30px;
+		}
+		.portfolio__page {
+			.el-col {
+				&:last-child {
+					.work__image {
+						margin-bottom: 0;
+					}
+				}
+			}
+		}
+		.work__title {
+			margin-top: 0;
+			text-align: center;
+		}
+
+		.work__info {
+			margin-bottom: 30px;
+		}
+		.work__meta {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+			padding: 10px 0;
+			border-bottom: 1px solid #eee;
+			&:first-of-type {
+				padding-top: 0;
+			}
+			&:last-of-type {
+				border-bottom: 0;
+			}
+		}
+		.work__meta-value {
+			flex-grow: 1;
+			text-align: right;
+		}
+		.work__share {
+			margin-top: 30px;
+			text-align: center;
+		}
 	}
 </style>

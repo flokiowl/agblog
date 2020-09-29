@@ -680,9 +680,11 @@
             }
         }
         .blog__teaser {
-            font-size: 14px;
-            max-height: 55px;
-            min-height: 55px;
+            p {
+                font-size: 14px;
+                max-height: 55px;
+                min-height: 55px;
+            }
         }
     }
 }

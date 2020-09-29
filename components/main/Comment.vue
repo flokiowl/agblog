@@ -88,4 +88,38 @@
 		line-height: 18px;
     }
 
+	@media screen and (max-width:768px) {
+		.comment__inner {
+			flex-grow: 1;
+		}
+		.comment__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 10px;
+		}
+		.comment__author {
+			margin-bottom: 0;
+		}
+		.comment__time {
+			line-height: 1;
+		}
+	}
+
+	@media screen and (max-width:550px) {
+		.comment__image {
+			min-width: 55px;
+			min-height: 55px;
+			max-height: 55px;
+			margin-right: 10px;
+			span {
+				font-size: 38px;
+			}
+		}
+
+		.comment__body {
+			font-size: 14px;
+		}
+	}
+
 </style>
