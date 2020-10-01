@@ -37,8 +37,8 @@
 					</ul>
 				</div>
 			</div>
-			<el-row>
-				<el-col :xs="24" :lg="12">
+			<el-row class="contact__row">
+				<el-col class="contact__col form" :xs="24" :md="12">
 					<div class="contact-form">
 						<form action="https://formspree.io/moqqpgwb" method="POST" class="form">
 							<!--нужен v-model-->
@@ -65,7 +65,7 @@
 						</form>
 					</div>
 				</el-col>
-				<el-col :xs="24" :lg="12">
+				<el-col class="contact__col" :xs="24" :md="12">
 					<div class="contact__right">
 						<p>Если у Вас возникли вопросы или предложения свяжитесь со мной удобным способом и я обязательно отвечу.</p>
 						<span class="ui-line"></span>
@@ -86,7 +86,7 @@
 						</div>
 					</div>
 				</el-col>
-				<el-col :span="24">
+				<el-col class="contact__col map" :span="24">
 					<div class="map-wrapper">
 						<GMap ref="gMap" :cluster="{options: {styles: clusterStyle}}"
 							:center="{lat: locations[0].lat, lng: locations[0].lng}"
@@ -182,9 +182,6 @@
 		display: flex;
 		justify-content: space-between;
 	}
-	.contact {
-		padding-bottom: 100px;
-	}
 	.contact-wrapper {
 		margin-bottom: 80px;
 	}
@@ -199,10 +196,10 @@
 		}
 	}
 	.contact__social-link {
-		display: block;
-		width: 160px;
-		margin-bottom: 5px;
-		padding: 9px 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 30px 7px 30px;
 		font-size: 13px;
 		font-weight: 700;
 		transition: all .3s;
@@ -387,32 +384,97 @@
 		border-radius: 5px;
 	}
 
-	@media screen and (max-width: 991px) {
+	@media screen and (max-width:991px) {
+		.contact-wrapper {
+			margin-bottom: 50px;
+			.block-title {
+				margin-bottom: 10px;
+				text-align: center;
+			}
+		}
 		#map {
 			margin-bottom: 0;
 		}
-		.contact-info {
-			.row {
-				.col-lg-4 {
-					&:first-child {
-						.contact-info-item {
-							padding-top: 0;
-						}
-					}
-					&:last-child {
-						.contact-info-item {
-							padding-bottom: 0;
-						}
-					}
-
+		.contact__row {
+			display: flex;
+			flex-direction: column;
+		}
+		.contact__col {
+			&.form {
+				order: 1;
+			}
+			&.map {
+				order: 2;
+			}
+		}
+		.contact__social-list {
+			flex-wrap: wrap;
+		}
+		.contact__social-link {
+			margin-bottom: 0;
+		}
+		.contact__right {
+			display: flex;
+			flex-direction: column;
+			padding-left: 0;
+			& > p {
+				max-width: 600px;
+				margin-bottom: 50px;
+			}
+			.ui-line {
+				margin: 35px 0;
+    			order: -1;
+				&:after {
+					margin-right: auto;
+					margin-left: 0;
 				}
 			}
 		}
-		.contact-info-item {
-			padding: 20px 0;
+		.contact__info {
+			order: -2;
 		}
 		.contact-form {
 			padding-bottom: 40px;
+			padding-right: 0;
+		}
+	}
+	@media screen and (max-width:768px) {
+		.contact__social-list {
+			justify-content: space-between;
+		}
+		.contact__social-item {
+			width: 49%;
+			margin-bottom: 10px;
+			&:not(:last-child) {
+				margin-right: 0;
+			}
+		}
+	}
+
+	@media screen and (max-width:550px) {
+		.contact__right {
+			& > p {
+				font-size: 14px;
+			}
+		}
+		.contact__info-item {
+			display: flex;
+			flex-direction: column;
+			.ui-decor {
+				height: 15px;
+			}
+			.muted {
+				order: -1;
+			}
+			.gen {
+				font-size: 14px;
+			}
+			.email-title {
+				font-size: 13px;
+			}
+			.email {
+				font-size: 18px;
+			}
 		}
 	}
 
