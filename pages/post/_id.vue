@@ -18,7 +18,7 @@
 		</div>
 		<div class="container">
 			<el-row>
-				<el-col :span="18">
+				<el-col class="post__col main" :span="18">
 					<div class="post__content">
 						<section class="blog__item">
 							<div class="blog__data text-center">
@@ -30,11 +30,13 @@
 									<i class="ui-decor"></i>
 								</div>
 								<div class="blog__data-item">
-									Просмотров
+									<i class="el-icon-view"></i>
+									<span class="text">Просмотров</span>
 									<span class="counter">{{post.views}}</span>
 								</div>
 								<div class="blog__data-item">
-									Комментариев
+									<i class="el-icon-chat-dot-round"></i>
+									<span class="text">Комментариев</span>
 									<span class="counter">{{post.comments.length}}</span>
 								</div>
 							</div>
@@ -82,7 +84,7 @@
 						</section>
 					</div>
 				</el-col>
-				<el-col :span="6">
+				<el-col class="post__col aside" :span="6">
 					<aside class="blog__aside sticky">
 						<div class="blog__aside-item">
 							<h3>Поиск</h3>

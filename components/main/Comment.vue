@@ -89,6 +89,9 @@
     }
 
 	@media screen and (max-width:768px) {
+		.comments {
+			padding-bottom: 50px;
+		}
 		.comment__inner {
 			flex-grow: 1;
 		}
@@ -103,6 +106,9 @@
 		}
 		.comment__time {
 			line-height: 1;
+		}
+		.comment__empty {
+			font-size: 16px;
 		}
 	}
 
