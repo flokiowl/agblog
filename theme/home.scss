@@ -28,6 +28,7 @@
 //intro
 .intro {
     padding-bottom: 100px;
+    overflow: hidden;
 }
 .intro__left {
     padding: 100px 0;
@@ -266,6 +267,7 @@
 //phases
 .phases {
     margin-bottom: 100px;
+    overflow: hidden;
 }
 .phases__row {
 	position: relative;
@@ -317,6 +319,7 @@
 .blog-swiper {
     position: relative;
     padding-top: 110px;
+    overflow: hidden;
     &:before {
         content: '';
         position: absolute;
@@ -353,6 +356,7 @@
             position: absolute;
             top: 0;
             left: 0;
+            max-height: 700px;
         }
     }
     .blog__swiper-link {

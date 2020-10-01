@@ -16,8 +16,11 @@
 			</div>
 		</div>
 		<div class="container">
-			<el-row>
-				<el-col :span="18">
+			<el-row class="blog__row">
+				<el-col class="blog__col main" :span="18">
+					<div class="blog__aside-toggler">
+						<span @click="asideOpen = !asideOpen">Фильтры</span>
+					</div>				
 					<transition-group tag="div" name="fade" class="blog__content" v-if="displayedPosts.length > 0">
 						<div class="blog__item" v-for="post in displayedPosts " :key="post._id">
 							<div class="blog__data text-center">
@@ -29,12 +32,14 @@
 									<i class="ui-decor"></i>
 								</div>
 								<div class="blog__data-item">
-									Просмотров
-									<span>{{post.views}}</span>
+									<i class="el-icon-view"></i>
+									<span class="text">Просмотров</span>
+									<span class="counter">{{post.views}}</span>
 								</div>
 								<div class="blog__data-item">
-									Комментариев
-									<span>{{post.comments.length}}</span>
+									<i class="el-icon-chat-dot-round"></i>
+									<span class="text">Комментариев</span>
+									<span class="counter">{{post.comments.length}}</span>
 								</div>
 							</div>
 							<article class="blog__main">
@@ -76,40 +81,48 @@
 						:total="filteredPosts.length">
 					</el-pagination>
 				</el-col>
-				<el-col :span="6">
-					<aside class="blog__aside">
-						<div class="blog__aside-item" v-for="(f, i) in filters" :key="i">
-							<h3>{{f.name}}</h3>
-							<template v-if="f.type === 'Search'">
-								<div class="input-group">
-									<el-input ref="search-input" placeholder="Введите значение" v-model="searchValue" @keyup.enter.native="f.value = searchValue"></el-input>
-									<button type="button" class="el-input-icon" @click.prevent="f.value = searchValue">
-										<i class="el-icon-search"></i>
-									</button>
-								</div>
-							</template>
-							<template v-if="f.type === 'Category'">
-								<div class="blog__category-list">
-									<el-checkbox-group v-model="f.value">
-										<el-checkbox v-for="(c,i) in categories" :key="i" :label="c.name">
-											{{c.name}} <span>({{c.count}})</span>
-										</el-checkbox>
-									</el-checkbox-group>
-								</div>
-							</template>
-							<template v-if="f.type === 'Tags'">
-								<div class="blog__tags-cloud">
-									<a href="/" class="default--hover"
-									   @click.prevent="selectTags(tag, f.value)"
-									   :class="{selected: f.value.indexOf(tag) !== -1}"
-									   v-for="(tag, index) in tags"
-									   :key="index"
-									>{{tag}}
-									</a>
-								</div>
-							</template>
+				<el-col class="blog__col aside" :class="{open: asideOpen}" :span="6">
+					<div class="blog__aside--sticky">
+						<div class="blog__aside-header" v-if="asideOpen">
+							<span class="blog__aside-header-title">Фильтры</span>
+							<span class="blog__aside-close" @click="asideOpen = false">
+								<i class="el-icon-close"></i>
+							</span>
 						</div>
-					</aside>
+						<aside class="blog__aside">
+							<div class="blog__aside-item" v-for="(f, i) in filters" :key="i">
+								<h3>{{f.name}}</h3>
+								<template v-if="f.type === 'Search'">
+									<div class="input-group">
+										<el-input ref="search-input" placeholder="Введите значение" v-model="searchValue" @keyup.enter.native="f.value = searchValue"></el-input>
+										<button type="button" class="el-input-icon" @click.prevent="f.value = searchValue">
+											<i class="el-icon-search"></i>
+										</button>
+									</div>
+								</template>
+								<template v-if="f.type === 'Category'">
+									<div class="blog__category-list">
+										<el-checkbox-group v-model="f.value">
+											<el-checkbox v-for="(c,i) in categories" :key="i" :label="c.name">
+												{{c.name}} <span>({{c.count}})</span>
+											</el-checkbox>
+										</el-checkbox-group>
+									</div>
+								</template>
+								<template v-if="f.type === 'Tags'">
+									<div class="blog__tags-cloud">
+										<a href="/" class="default--hover"
+										@click.prevent="selectTags(tag, f.value)"
+										:class="{selected: f.value.indexOf(tag) !== -1}"
+										v-for="(tag, index) in tags"
+										:key="index"
+										>{{tag}}
+										</a>
+									</div>
+								</template>
+							</div>
+						</aside>
+					</div>
 				</el-col>
 			</el-row>
 		</div>
@@ -133,6 +146,7 @@
 		data() {
 			return {
 				photo,
+				asideOpen: false,
 				searchValue: this.$route.query.search || '',
 				pageSize: 4,
 				filters: [

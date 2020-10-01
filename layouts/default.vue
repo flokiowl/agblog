@@ -31,7 +31,8 @@ export default {
 		min-height: 100vh;
 	}
 	.el-main {
-		overflow-x: hidden;
+		// overflow-x: hidden;
+		overflow: visible;
 		flex-grow: 1;
 		margin-top: -80px;
 		padding: 0;

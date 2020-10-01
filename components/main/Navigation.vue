@@ -21,9 +21,9 @@
 						</button>
 					</div>
 					<nav class="header-nav">
-						<div class="header-nav-backdrop" @click="menuOpen = !menuOpen"></div>
+						<div class="header-nav-backdrop" @click="menuOpen = false"></div>
 						<ul id="nav-sticky" class="site-nav-menu">
-							<li class="header-nav-item" v-for="(link,i) in links" :key="i" @click="open = !open">
+							<li class="header-nav-item" v-for="(link,i) in links" :key="i" @click="menuOpen = false">
 								<nuxt-link class="header-nav-link" :to="link.url">
 									<span>{{link.text}}</span>
 								</nuxt-link>
@@ -54,9 +54,9 @@
 						</button>
 					</div>
 					<nav class="header-nav" :class="{opened: menuOpen}">
-						<div class="header-nav-backdrop" @click="menuOpen = !menuOpen"></div>
+						<div class="header-nav-backdrop" @click="menuOpen = false"></div>
 						<ul id="nav" class="site-nav-menu">
-							<li class="header-nav-item" v-for="(link,i) in links" :key="i" @click="menuOpen = !menuOpen">
+							<li class="header-nav-item" v-for="(link,i) in links" :key="i" @click="menuOpen = false">
 								<nuxt-link class="header-nav-link" :to="link.url">
 									<span>{{link.text}}</span>
 								</nuxt-link>
