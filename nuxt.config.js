@@ -37,7 +37,7 @@ module.exports = {
 		baseURL: process.env.BASE_URL || 'http://localhost:3000'
   	},
 	env: {
-		appName: 'Личный сайт фронт енд разработчика'
+		appName: 'Личный сайт фронтенд разработчика'
 	},
   	build: {
 		transpile: [/^element-ui/],

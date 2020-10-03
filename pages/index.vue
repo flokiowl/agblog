@@ -7,7 +7,12 @@
 						<div class="intro__left bg-grey bg-grey--full-width">
 							<span class="intro__sub style-x">Front end developer</span>
 							<h2 class="intro__title">Андрей Голуб</h2>
-							<p class="intro__about">Всем привет! Я начинающий веб-разработчик. Проживаю в городе Обухов. В 2018 году начал изучать веб-дизайн, но как только столкнулся с HTML5, понял, что это то чему хочу посвятить всего себя! Сейчас активно развиваюсь в области Front-end Development. В короткие сроки могу освоить и начать использовать новые технологии. Я целеустремлен и воодушевлен идей развития в IT. На данный момент ищу место, где смогу получить хорошие знания, невероятный опыт и отличную команду при работе над интересными проектами.</p>
+							<p class="intro__about">
+								Всем привет! Я фронтенд разработчик, изучаю мир веба уже более двух лет. В 2018 году начал осваивать веб-дизайн, но как только столкнулся с HTML5, понял, что это то чему хочу посвятить всего себя. В короткие сроки могу освоить и начать использовать новые технологии.
+							</p>
+							<p class="intro__about" style="margin-top:15px;">
+								На данный момент ищу место, где смогу получить хорошие знания, невероятный опыт и отличную команду при работе над интересными проектами.
+							</p>
 						</div>
 						<div class="intro__button">
 							<span class="ui-line-decore"></span>
@@ -61,16 +66,16 @@
 							<el-col :xs="24" :sm="12">
 								<div class="home-works__how-to">
 									<h4>Как я это делаю?</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam culpa dicta, earum omnis perferendis sequi sit tempora voluptatibus! Dolores eligendi exercitationem soluta vitae.</p>
+									<p>Вникаю в задачи Вашего бизнеса. Тщательно анализирую и подбираю варианты решения с помощью интернет-маркетинга и качественной web-разработки. Соблюдаю сроки и работаю на результат.</p>
 								</div>
 							</el-col>
 						</el-row>
 					</el-col>
 					<el-col :span="6" class="home-works__col">
 						<div class="home-works__right">
-							<span>Web design</span>
-							<span>Animation</span>
-							<span>Illustration</span>
+							<span>Анализ</span>
+							<span>Разработка</span>
+							<span>Деплой</span>
 							<div class="home-works__button">
 								<span class="ui-line-decore"></span>
 								<nuxt-link to="/work" class="btn-default default--hover"><i class="ui-decor"></i> Портфолио</nuxt-link>
@@ -179,9 +184,9 @@
 				],
 				phases: [
 					{caption: 'Фаза 1', text: 'Планирование и анализ'},
-					{caption: 'Фаза 2', text: 'Завершение разработки'},
-					{caption: 'Фаза 3', text: 'Тестирование и исправления ошибок'},
-					{caption: 'Фаза 4', text: 'Реализация проекта'}
+					{caption: 'Фаза 2', text: 'Разработка'},
+					{caption: 'Фаза 3', text: 'Тестирование'},
+					{caption: 'Фаза 4', text: 'Реализация'}
 				],
 				swiperOption: {
 					slidesPerView: 1,

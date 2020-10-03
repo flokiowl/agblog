@@ -1,10 +1,5 @@
 <template>
 	<div>
-		<!-- <div class="mobile-header" :class='{open : open === true}'>
-			<button type="button" class="toggle-menu" @click="open = !open" aria-label="Мобильное меню">
-				<i class="el-icon-menu"></i>  
-			</button>
-		</div> -->
 		<header class="header--sticky">
 			<div class="container">
 				<div class="header-content">
