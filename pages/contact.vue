@@ -23,16 +23,16 @@
 				<div class="contact__social">
 					<ul class="contact__social-list">
 						<li class="contact__social-item">
-							<a href="/" class="contact__social-link">Facebook</a>
+							<a href="https://www.facebook.com/flokiowl/" target="_blank" class="contact__social-link">Facebook</a>
 						</li>
 						<li class="contact__social-item">
-							<a href="/" class="contact__social-link">Instagram</a>
+							<a href="https://www.instagram.com/flokiowl/" target="_blank" class="contact__social-link">Instagram</a>
 						</li>
 						<li class="contact__social-item">
-							<a href="/" class="contact__social-link">Telegram</a>
+							<a href="https://t.me/flokiowl" target="_blank" class="contact__social-link">Telegram</a>
 						</li>
 						<li class="contact__social-item">
-							<a href="/" class="contact__social-link">Github</a>
+							<a href="https://github.com/flokiowl" target="_blank" class="contact__social-link">Github</a>
 						</li>
 					</ul>
 				</div>
@@ -86,49 +86,33 @@
 						</div>
 					</div>
 				</el-col>
-				<el-col class="contact__col map" :span="24">
-					<div class="map-wrapper">
-						<GMap ref="gMap" :cluster="{options: {styles: clusterStyle}}"
-							:center="{lat: locations[0].lat, lng: locations[0].lng}"
-							:options="{fullscreenControl: false, streetViewControl: false, mapTypeControl: false, zoomControl: true, gestureHandling: 'cooperative', styles: mapStyle}"
-							:zoom="7">
-							<GMapMarker v-for="location in locations" :key="location.id"
-								:position="{lat: location.lat, lng: location.lng}"
-								:options="{icon: location === currentLocation ? pins.selected : pins.notSelected}"
-								@click="currentLocation = location">
-								<GMapInfoWindow>
-									<h3 class="text-center mb">{{ location.name }}</h3>
-									<div class="map-info-item">
-										<b>Население:</b> 
-										<span>{{location.people}}</span>
-									</div>
-									<div class="map-info-item">
-										<b>Площадь, км<sup><small>2</small></sup>:</b> 
-										<span>{{location.area}}</span>
-									</div>
-									<br>
-									<br>
-									<code>
-										y: {{ location.lat }},
-										x: {{ location.lng }}
-									</code>
-								</GMapInfoWindow>
-							</GMapMarker>
-							<GMapCircle :options="circleOptions" />
-						</GMap>
+				<!-- <el-col class="contact__col map" :span="24">
+					<div id="map-wrap" class="map-wrapper" style="height: 500px">
+						<client-only>
+							<l-map :zoom=10 :center="[50.130253,30.656062]">
+								<l-tile-layer url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"></l-tile-layer>
+								<l-marker :lat-lng="[50.130253,30.656062]"></l-marker>
+							</l-map>
+						</client-only>
 					</div>
-				</el-col>
+				</el-col> -->
 			</el-row>
 		</div>
 	</div>
 </template>
 
 <script>
-	import {
-		gmapApi
-	} from 'vue2-google-maps';
-	import mapStyle from '@/assets/map-style.json'
 	import photo from '@/assets/bg-1.jpg'
+	// import { Icon } from 'leaflet'
+	// import 'leaflet/dist/leaflet.css';
+
+	// delete Icon.Default.prototype._getIconUrl;
+	// Icon.Default.mergeOptions({
+	// 	iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+	// 	iconUrl: require('leaflet/dist/images/marker-icon.png'),
+	// 	shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+	// });
+
 	export default {
 		name: "contact",
 		head: {
@@ -136,43 +120,8 @@
 		},
 		data() {
 			return {
-				photo,
-				mapStyle,
-				currentLocation: {},
-				circleOptions: {},
-				locations: [
-					{
-						lat: 50.130253,
-						lng: 30.656062,
-						name: "Обухов",
-						people: "33 610",
-						area: "24,2"
-					},
-					{
-						lat: 50.45466,
-						lng: 30.5238,
-						name: "Киев",
-						people: "2 951 482",
-						area: "839"
-					},
-				],
-				pins: {
-					selected: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHElEQVR42uVVyw4BMRQdC98lsbPwG5YSH+BzWFtLZilh0oQgFh6J54IwBmGYtrfaBREdcTvDhpM0adrec3rb+7Csn8fRdrLg7VzBubhDzmHrudRuZ2KRs/miLd6AThfNaOTTGRFIsMm8bkSuXBeGoLVaGi0g39wLI4GTf1EjdE/+E1pAAGgEAenkb/tBo1vQFUDgBbSbny6al77uSQwB/6wJSNHoAo8xj30iaYMW4Lv9wfSTpc0eH6atXtE4TKWNUS4AY2hyddY4k/lwVEZncm9QilQuBGPwnp1B5GIXGi3P0eU0c7EqKrje5hU5d7fr2P2AEJIESkNqB1XJkvhI0/GrTuqZX619tLMF/VHlfnk5/0r7ZMvVWA3rr3AF6LIMZ7PmSlUAAAAASUVORK5CYII=",
-					notSelected: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHElEQVR42uVVyw4BMRQdC98lsbPwG5YSH+BzWFtLZilh0oQgFh6J54IwBmGYtrfaBREdcTvDhpM0adrec3rb+7Csn8fRdrLg7VzBubhDzmHrudRuZ2KRs/miLd6AThfNaOTTGRFIsMm8bkSuXBeGoLVaGi0g39wLI4GTf1EjdE/+E1pAAGgEAenkb/tBo1vQFUDgBbSbny6al77uSQwB/6wJSNHoAo8xj30iaYMW4Lv9wfSTpc0eH6atXtE4TKWNUS4AY2hyddY4k/lwVEZncm9QilQuBGPwnp1B5GIXGi3P0eU0c7EqKrje5hU5d7fr2P2AEJIESkNqB1XJkvhI0/GrTuqZX619tLMF/VHlfnk5/0r7ZMvVWA3rr3AF6LIMZ7PmSlUAAAAASUVORK5CYII="
-				},
-				mapStyle: mapStyle,
-				clusterStyle: [
-					{
-						url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png",
-						width: 56,
-						height: 56,
-						textColor: "#fff"
-					}
-				]
+				photo
 			}
-		},
-		computed: {
-			google: gmapApi
 		}
 	}
 </script>
@@ -316,6 +265,9 @@
 	}
 	.contact__right {
 		padding-left: 30px;
+		.ui-line {
+			margin: 43px 0;
+		}
 	}
 	.ui-line {
 		display: block;
@@ -436,6 +388,9 @@
 		.contact-form {
 			padding-bottom: 40px;
 			padding-right: 0;
+		}
+		.map-wrapper {
+			margin-top: 0;
 		}
 	}
 	@media screen and (max-width:768px) {

@@ -20,24 +20,18 @@ module.exports = {
 		'@/theme/home.scss',
 		'@/theme/blog.scss',
 		'highlight.js/styles/atom-one-light.css'
-
   	],
   	plugins: [
 		'@/plugins/globals',
 		'@/plugins/axios',
-		// { src: '@/plugins/swiper', mode: 'client' }
-		// { ssr: false, src: '@/plugins/googlemaps.js' }
+		// { src: '~plugins/leaflet.js', ssr: false }
     ],
   	buildModules: [
   	],
   	modules: [
 		// Doc: https://axios.nuxtjs.org/usage
 		'@nuxtjs/axios',
-		'@nuxtjs/pwa',
-		['nuxt-gmaps', {
-			key: 'AIzaSyBn6xi21WRoN9FEPQjL0J95ZSEQcKT9Gwg',
-			libraries: ['places']
-		  }]
+		'@nuxtjs/pwa'
   	],
   	axios: {
 		baseURL: process.env.BASE_URL || 'http://localhost:3000'
