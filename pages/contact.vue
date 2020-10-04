@@ -42,8 +42,8 @@
 					<div class="contact-form">
 						<form action="https://formspree.io/moqqpgwb" method="POST" class="form">
 							<!--нужен v-model-->
-							<el-input type="text" placeholder="Ваше имя" name="name" required></el-input>
-							<el-input type="email" placeholder="Ваш email" name="_replyto" required></el-input>
+							<el-input type="text" placeholder="Ваше имя" name="name" v-model="contact.name" required></el-input>
+							<el-input type="email" placeholder="Ваш email" name="_replyto" v-model="contact.email" required></el-input>
 							<el-input
 								type="textarea"
 								id="message"
@@ -53,6 +53,7 @@
 								max-rows="6"
 								required
 								resize="none"
+								v-model="contact.text"
 							></el-input>
 							<div class="contact__button">
 								<span class="ui-line-decore"></span>
@@ -86,16 +87,6 @@
 						</div>
 					</div>
 				</el-col>
-				<!-- <el-col class="contact__col map" :span="24">
-					<div id="map-wrap" class="map-wrapper" style="height: 500px">
-						<client-only>
-							<l-map :zoom=10 :center="[50.130253,30.656062]">
-								<l-tile-layer url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"></l-tile-layer>
-								<l-marker :lat-lng="[50.130253,30.656062]"></l-marker>
-							</l-map>
-						</client-only>
-					</div>
-				</el-col> -->
 			</el-row>
 		</div>
 	</div>
@@ -103,15 +94,6 @@
 
 <script>
 	import photo from '@/assets/bg-1.jpg'
-	// import { Icon } from 'leaflet'
-	// import 'leaflet/dist/leaflet.css';
-
-	// delete Icon.Default.prototype._getIconUrl;
-	// Icon.Default.mergeOptions({
-	// 	iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-	// 	iconUrl: require('leaflet/dist/images/marker-icon.png'),
-	// 	shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-	// });
 
 	export default {
 		name: "contact",
@@ -120,7 +102,12 @@
 		},
 		data() {
 			return {
-				photo
+				photo,
+				contact: {
+					name: '',
+					email: '',
+					text: ''
+				}
 			}
 		}
 	}

@@ -188,9 +188,6 @@
 		transition: all 0.6s;
 	}
 	//
-	// .portfolio {
-	// 	padding-bottom: 100px;
-	// }
 	.portfolio__tools {
 		padding-bottom: 40px;
 		display: flex;
@@ -260,7 +257,7 @@
 	}
 	.portfolio__item {
 		position: relative;
-		margin-bottom: 25px;
+		margin-bottom: 125px;
 		&:hover {
 			.portfolio__image {
 				transform: scale(1.05);
@@ -279,9 +276,10 @@
 		position: relative;
 		color: #fff;
 		height: auto;
-		padding-bottom: 65%;
-		overflow: hidden;
-		border: 1px solid #eee;
+		padding-bottom: 55%;
+		// overflow: hidden;
+		// border: 1px solid #eee;
+		margin-bottom: 100px;
 	}
 	.portfolio__image {
 		position: absolute;
@@ -294,34 +292,38 @@
 		transform: scale(1);
 		transition: all .4s;
 		will-change: transform;
+
+		box-shadow: 0 0 15px rgba(0,0,0,.15);
 	}
 	.portfolio__hover {
 		width: 100%;
 		height: 90px;
-		padding: 15px;
+		padding: 10px 0;
 		position: absolute;
 		right: 0;
-		bottom: 0;
+		bottom: -100px;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		background: #eee;
-		overflow: hidden;
+		justify-content: flex-start;
+		align-items: flex-start;
+		// background: #eee;
+		// overflow: hidden;
 
 		transition: all .4s;
 	}
 	.portfolio__name {
+		font-size: 18px;
+		line-height: 20px;
 		color: #333;
 		margin: 0;
-		margin-bottom: 10px;
+		margin-bottom: 5px;
 		text-align: center;
 		position: relative;
 		transition: all .4s;
 	}
 	.portfolio__date {
-		font-size: 15px;
-		color: #333;
+		font-size: 14px;
+		color: #aaa;
 		position: relative;
 		transition: all .6s;
 	}
