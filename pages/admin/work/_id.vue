@@ -9,7 +9,7 @@
 				<el-breadcrumb separator="/">
 					<el-breadcrumb-item :to="{ path: '/admin' }">Главная</el-breadcrumb-item>
 					<el-breadcrumb-item :to="{ path: '/admin/works' }">Портфолио</el-breadcrumb-item>
-					<el-breadcrumb-item>{{work.name}}</el-breadcrumb-item>
+					<el-breadcrumb-item>{{work.currentWork.name}}</el-breadcrumb-item>
 				</el-breadcrumb>
 			</div>
 		</div>
@@ -72,7 +72,7 @@
 							drag
 							action="https://jsonplaceholder.typicode.com/posts/"
 							:auto-upload="false"
-							:file-list="work.image"
+							:file-list="work.currentWork.image"
 							:on-remove="handleImageRemove"
 							:on-change="handleImageChange"
 							:on-preview="handlePictureCardPreview"
@@ -107,7 +107,7 @@
 		},
 		head() {
 			return {
-				title: `Портфолио | ${this.work.name}`
+				title: `Портфолио | ${this.work.currentWork.name}`
 			}
 		},
 		validate({params}) {
@@ -152,13 +152,13 @@
 			}
 		},
 		mounted() {
-			this.controls.name = this.work.name
-			this.controls.description = this.work.description
-			this.controls.tech  = this.work.tech
-			this.controls.date  = this.work.date
-			this.controls.site_link = this.work.site_link
-			this.controls.repo_link = this.work.repo_link
-			this.image = this.work.image
+			this.controls.name = this.work.currentWork.name
+			this.controls.description = this.work.currentWork.description
+			this.controls.tech  = this.work.currentWork.tech
+			this.controls.date  = this.work.currentWork.date
+			this.controls.site_link = this.work.currentWork.site_link
+			this.controls.repo_link = this.work.currentWork.repo_link
+			this.image = this.work.currentWork.image
 		},
 		methods: {
 			handlePictureCardPreview(file) {
