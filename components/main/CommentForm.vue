@@ -137,6 +137,7 @@
 		}
 	}
 	.comment__submit {
+		margin-bottom: 0;
 		.ui-line-decore {
 			margin-top: 0;
 			&:after {

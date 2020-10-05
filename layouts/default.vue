@@ -6,11 +6,13 @@
 		</el-main>
 		<footer class="footer">
 			<div class="footer__content">
+				<div class="container">
 				<p class="footer__copyright">
 					Copyrights {{new Date | dateFormat('YYYY')}}
 					<nuxt-link to="/" class="default--hover">Andrew Golub - Web-developer</nuxt-link>
 				</p>
 				<p class="footer__rights">All Rights Reserved.</p>
+				</div>
 			</div>
 		</footer>
 	</el-container>
@@ -44,9 +46,8 @@ export default {
 	}
 	.footer__content {
 		padding-top: 50px;
-		padding-bottom: 80px;
+		padding-bottom: 50px;
 		border-top: 1px solid #eee;
-		margin-left: 12%;
 	}
 	.footer__copyright {
 		a {
@@ -57,14 +58,13 @@ export default {
 	@media screen and (max-width: 991px) {
 		.footer__content {
 			margin-left: 0;
-			padding-left: 30px;
-			padding-right: 30px;
 		}
 	}
-	@media screen and (max-width: 768px) {
-		.footer__content {
-			padding-left: 15px;
-			padding-right: 15px;
+	@media screen and (max-width: 550px) {
+		.footer__copyright,
+		.footer__rights {
+			font-size: 14px;
+			line-height: 18px;
 		}
 	}
 	@media screen and (max-width: 480px) {

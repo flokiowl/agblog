@@ -4,11 +4,11 @@
 			<div class="container">
 				<div class="text-center">
 					<h2 class="page-title text-center">
-						Интересное
+						Новости
 						<div class="page-title-bottom">
 							<ul class="breadcrumbs">
 								<li class="breadcrumbs-item"><nuxt-link to="/" class="breadcrumbs-link">Главная</nuxt-link></li>
-								<li class="breadcrumbs-item"><nuxt-link to="/post" class="breadcrumbs-link">Интересное</nuxt-link></li>
+								<li class="breadcrumbs-item"><nuxt-link to="/post" class="breadcrumbs-link">Новости</nuxt-link></li>
 								<li><span class="breadcrumbs-link">Пост</span></li>
 							</ul>
 						</div>
@@ -51,18 +51,22 @@
 								<footer class="post__footer">
 									<div class="post__tags">
 										<b>Теги:</b>
-										<a href="/" class="default--hover" @click.prevent="tagFilter(tag)" v-for="(tag,index) in post.tags" :key="tag">
-											<template v-if="index">, </template>
-											<span>{{tag}}</span>
-										</a>
+										<div class="post__tags-inner">
+											<a href="/" class="default--hover" @click.prevent="tagFilter(tag)" v-for="(tag,index) in post.tags" :key="tag">
+												<template v-if="index">, </template>
+												<span>{{tag}}</span>
+											</a>
+										</div>
 									</div>
 									<social-sharing :url="shareUrl" :title="post.title" :hashtags="tagsString" inline-template>
 										<div class="post__share">
-											<b>Поделиться</b>
-											<network class="default--hover" network="facebook">Facebook</network>
-											<network class="default--hover" network="telegram">Telegram</network>
-											<network class="default--hover" network="twitter">Twitter</network>
-											<network class="default--hover" network="linkedin">LinkedIn</network>
+											<b>Поделиться:</b>
+											<div class="post__share-inner">
+												<network class="default--hover" network="facebook">Facebook</network>
+												<network class="default--hover" network="telegram">Telegram</network>
+												<network class="default--hover" network="twitter">Twitter</network>
+												<network class="default--hover" network="linkedin">LinkedIn</network>
+											</div>
 										</div>
 									</social-sharing>
 								</footer>

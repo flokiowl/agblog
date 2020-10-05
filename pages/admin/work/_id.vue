@@ -189,7 +189,7 @@
 						this.loading = true
 						try {
 							const formData = {
-								id: this.work._id,
+								id: this.work.currentWork._id,
 								name: this.controls.name,
 								description: this.controls.description,
 								date: this.controls.date,

@@ -26,7 +26,7 @@
 				<span class="style-x">Front end development</span>
 				<h1>{{work.name}}</h1>
 			</div>
-			<el-row :gutter="50" class="mb2">
+			<el-row :gutter="30" class="mb2">
 				<el-col :xs="24" :sm="12">
 					<div class="work__image">
 						<img :src="work.image[0].url" :alt="work.name" @click="index = 0">
@@ -39,7 +39,7 @@
 					</div>
 				</el-col>
 			</el-row>
-			<el-row :gutter="50" class="mb2">
+			<el-row :gutter="30" class="mb2">
 				<el-col :xs="24" :sm="12">
 					<div class="work__info">
 						<h3 class="work__title" @click="openPrev">Подробности</h3>
@@ -49,11 +49,11 @@
 						</div>
 						<div class="work__meta" v-if="work.site_link">
 							<span class="work__meta-title">Сайт</span>
-							<a class="work__meta-value" :href="work.site_link" >{{work.site_link}}</a>
+							<a class="work__meta-value" :href="work.site_link" target="_blank">Перейти <i class="el-icon-link"></i></a>
 						</div>
 						<div class="work__meta" v-if="work.repo_link">
 							<span class="work__meta-title">Репозиторий</span>
-							<a class="work__meta-value" :href="work.repo_link">{{work.repo_link}}</a>
+							<a class="work__meta-value" :href="work.repo_link" target="_blank">Перейти <i class="el-icon-link"></i></a>
 						</div>
 						<div class="work__meta" v-if="work.tech">
 							<span class="work__meta-title">Технологии</span>
@@ -75,7 +75,7 @@
 					</div>
 				</el-col>
 			</el-row>
-			<el-row :gutter="50" class="mb2" v-if="work.image[2] || work.image[3]">
+			<el-row :gutter="30" class="mb2" v-if="work.image[2] || work.image[3]">
 				<el-col :xs="24" :sm="12" v-if="work.image[2]">
 					<div class="work__image">
 						<img :src="work.image[2].url" :alt="work.name" @click="index = 2">
@@ -211,21 +211,23 @@
 	}
 	.work__image {
 		position: relative;
-		padding-bottom: 65%;
+		padding-bottom: 55%;
 		img {
-			min-width: 100%;
+			// min-width: 100%;
 			max-width: 100%;
 			box-shadow: 0 0 20px rgba(0,0,0,.1);
 			border-radius: 3px;
 			cursor: pointer;
-			object-fit: cover;
-			object-position: center;
 			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
 			height: 100%;
 		}
 	}
 	.work__meta {
 		margin-bottom: 20px;
+		display: flex;
+		align-items: center;
 	}
 	.work__meta-title {
 		display: inline-block;
@@ -233,6 +235,7 @@
 		text-transform: uppercase;
 		color: #000;
 		font-weight: 500;
+		width: 150px;
 	}
 	.work__meta-value {
 		&[href] {
@@ -326,9 +329,14 @@
 	}
 	.comment__empty {
 		padding-bottom: 40px;
-		font-size: 18px;
-		font-style: italic;
+		font-size: 16px;
 		color: #555;
+	}
+
+	@media screen and (max-width:991px) {
+		.comment__title {
+			font-size: 16px;
+		}
 	}
 
 	@media screen and (max-width:768px) {
@@ -382,6 +390,28 @@
 		.work__share {
 			margin-top: 30px;
 			text-align: center;
+		}
+	}
+	@media screen and (max-width:550px) {
+		.work__description {
+			p {
+				font-size: 14px;
+			}
+		}
+		.work__meta-value {
+			font-size: 14px;
+		}
+		.work__share {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			span {
+				width: 49%;
+				margin-bottom: 10px;
+			}
+		}
+		.work__neighbor-link {
+			font-size: 14px;
 		}
 	}
 </style>
