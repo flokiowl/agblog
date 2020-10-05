@@ -35,12 +35,13 @@ export const actions = {
             throw e
         }
     },
-    async update({commit}, {id, title, text, category, tags, date, image}) {
+    async update({commit}, {id, title, text, teaser, category, tags, date, image}) {
         try {
 			const fd = new FormData()
 			fd.append('title', title)
 			fd.append('text', text)
 			fd.append('date', date)
+			fd.append('teaser', teaser)
 			if (category !== undefined) {
 				fd.append('category', JSON.stringify(category))
 			}

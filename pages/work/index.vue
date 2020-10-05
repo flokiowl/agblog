@@ -254,6 +254,7 @@
 		background: #f4f4f4;
 		color: #777;
 		font-size: 20px;
+		cursor: pointer;
 		&:hover {
 			color: #333;
 		}

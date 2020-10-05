@@ -194,7 +194,8 @@
 								id: this.post._id,
 								title: this.controls.title,
 								text: this.controls.text,
-								date: this.controls.date
+								date: this.controls.date,
+								teaser: this.controls.teaser
 							}
 							if (this.categoryChanged) {
 								formData.category = this.controls.category

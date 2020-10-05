@@ -208,6 +208,9 @@
 		* {
 			color: #777;
 		}
+		a {
+			color: #db4454;
+		}
 	}
 	.work__image {
 		position: relative;

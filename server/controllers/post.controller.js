@@ -46,7 +46,8 @@ module.exports.update = async (req,res) => {
     let $set = {
 		title: req.body.title,
 		text: req.body.text,
-		date: req.body.date
+		date: req.body.date,
+		teaser: req.body.teaser
     }
     if (req.body.category) {
     	$set.category = JSON.parse(req.body.category)

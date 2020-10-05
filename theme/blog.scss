@@ -754,9 +754,21 @@
 }
 
 @media screen and (max-width:550px) {
+	.blog__date--number {
+		font-size: 44px;
+	}
+	.blog__date--month {
+		font-size: 16px;
+	}
+	.blog__data-item {
+		.counter {
+			font-size: 14px;
+		}
+	}
 	.post__content {
 		.blog__title {
 			h2 {
+				font-size: 20px;
 				text-align: center;
 			}
 		}
@@ -775,6 +787,10 @@
 			font-size: 18px;
 			line-height: 24px;
 		}
+	}
+	.post__tags,
+	.post__share {
+		display: block;
 	}
 }
 
