@@ -17,7 +17,35 @@
 		</div>
 		<div class="container">
 			<div class="resume-wrapper">
-				<el-row class="resume__row education" :gutter="50">
+				<div class="resume-item">
+					<div class="resume-icon">
+						<img :src="pdfIcon" />
+					</div>
+					<div class="resume-info">
+						<h3>Резюме UA</h3>
+						<a :href="resumeUA" target="_blank">Переглянути</a>
+					</div>
+				</div>
+				<div class="resume-item">
+					<div class="resume-icon">
+						<img :src="pdfIcon" />
+					</div>
+					<div class="resume-info">
+						<h3>Резюме RU</h3>
+						<a :href="resumeRU" target="_blank">Переглянути</a>
+					</div>
+				</div>
+				<div class="resume-item">
+					<div class="resume-icon">
+						<img :src="pdfIcon" />
+					</div>
+					<div class="resume-info">
+						<h3>Резюме EN</h3>
+						<a :href="resumeEN" target="_blank">Переглянути</a>
+					</div>
+				</div>
+
+				<!-- <el-row class="resume__row education" :gutter="50">
 					<el-col class="resume__col left" :span="3">
 						<div class="resume__title-wrapper">
 							<h2 class="resume__title">Образование</h2>
@@ -77,13 +105,17 @@
 							</div>
 						</div>
 					</el-col>
-				</el-row>
+				</el-row> -->
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import resumeUA from '@/assets/resume/UA.pdf'
+	import resumeRU from '@/assets/resume/RU.pdf'
+	import resumeEN from '@/assets/resume/EN.pdf'
+	import pdfIcon from '@/assets/pdf.png'
 	import photo from '@/assets/bg-1.jpg'
 	export default {
 		name: 'resume',
@@ -92,7 +124,8 @@
 		},
 		data() {
 			return {
-				photo,
+				photo, pdfIcon,
+				resumeUA, resumeRU, resumeEN,
 				education: [
 					{
 						date: '2013 - 2017',

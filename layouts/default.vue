@@ -42,7 +42,7 @@ export default {
 	}
 	.footer {
 		background: #fff;
-		padding-top: 80px;
+		// padding-top: 80px;
 	}
 	.footer__content {
 		padding-top: 50px;

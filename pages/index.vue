@@ -8,10 +8,7 @@
 							<span class="intro__sub style-x">Front end developer</span>
 							<h2 class="intro__title">Андрей Голуб</h2>
 							<p class="intro__about">
-								Всем привет! Я фронтенд разработчик, изучаю мир веба уже более двух лет. В 2018 году начал осваивать веб-дизайн, но как только столкнулся с HTML5, понял, что это то чему хочу посвятить всего себя. В короткие сроки могу освоить и начать использовать новые технологии.
-							</p>
-							<p class="intro__about" style="margin-top:15px;">
-								На данный момент ищу место, где смогу получить хорошие знания, невероятный опыт и отличную команду при работе над интересными проектами.
+								Работаю в сфере IT около 3-х лет. За это время я участвовал в ряде коммерческих программных проектов, бизнес-приложений с клиент-серверными и веб-технологиями. Разработал и реализовал компоненты для нескольких проектов. Хорошо работаю в команде. В настоящее время занимаю должность разработчика интерфейсов в компании RegToEvent.
 							</p>
 						</div>
 						<div class="intro__button">
@@ -29,7 +26,7 @@
 				</el-row>
 			</div>
 		</section>
-		<section class="services section-padding" id="services" ref="services">
+		<!-- <section class="services section-padding" id="services" ref="services">
 			<div class="container">
 				<div class="block-title text-center">
 					<h3>Чем я занимаюсь?</h3>
@@ -151,7 +148,7 @@
 					</swiper>
 				</client-only>
 			</div>
-		</section>
+		</section> -->
 	</div>
 </template>
 

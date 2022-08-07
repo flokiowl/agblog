@@ -74,7 +74,7 @@
 					{text:'Главная', url: '/' },
 					{text:'Резюме', url: '/resume' },
 					{text:'Портфолио', url: '/work' },
-					{text:'Новости', url: '/post' },
+					// {text:'Новости', url: '/post' },
 					{text:'Контакты', url: '/contact' }
 				]
 			}
